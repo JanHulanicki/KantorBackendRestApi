@@ -6,5 +6,5 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 public class NbpConfig {
-    private String NbpApiEndpoint="https://api.nbp.pl/api/exchangerates/rates/a/chf/?format=json";
+    private String NbpApiEndpoint="https://api.nbp.pl/api/exchangerates/rates/a/";///?format=json";
 }

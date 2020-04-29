@@ -15,9 +15,9 @@ public class NbpCurrenciesClient {
     @Autowired
     NbpConfig nbpConfig;
 
-     public NbpCurrencyDto getActualCurrencyRateByCode() throws IOException {
+     public NbpCurrencyDto getActualCurrencyRateByCode(String currencyCode) throws IOException {
         // URL url = new URL("https://api.nbp.pl/api/exchangerates/rates/a/chf/?format=json");
-         URL url = new URL(nbpConfig.getNbpApiEndpoint());
+         URL url = new URL(nbpConfig.getNbpApiEndpoint()+currencyCode);
          InputStreamReader reader = new InputStreamReader(url.openStream());
          NbpCurrencyDto nbpCurrencyDto= new Gson().fromJson(reader,NbpCurrencyDto.class);
          System.out.println(nbpCurrencyDto.toString());
