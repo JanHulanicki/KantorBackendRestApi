@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RealtimeCurrencyExchangeRatedDto {
-    private Long id;
+    private Long _id;
     @SerializedName("1. From_Currency Code")
     @Expose
     public String code;

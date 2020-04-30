@@ -14,7 +14,7 @@ import java.util.Arrays;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NbpCurrencyDto {
-    private Long id;
+    private Long _id;
   //  @SerializedName("table")
   //  @Expose
   //  public String table;

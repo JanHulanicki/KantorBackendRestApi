@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-//@Component
+
 public enum CryptoCurrencyCode {
     BTC("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=PLN&apikey=C8WU9BD08FJLFMSD"),
     ETH("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=ETH&to_currency=PLN&apikey=C8WU9BD08FJLFMSD"),

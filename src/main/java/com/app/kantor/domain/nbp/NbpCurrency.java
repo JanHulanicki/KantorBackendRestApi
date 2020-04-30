@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 public class NbpCurrency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long _id;
 
     @Column(name = "currency")
     private String currency;

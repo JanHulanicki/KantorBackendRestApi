@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class NbpCurrencyMapper {
     private NbpCurrency mapToNbpCurrency(final NbpCurrencyDto nbpCurrencyDto) {
         NbpCurrency nbpCurrency = new NbpCurrency();
-        nbpCurrency.setId(nbpCurrencyDto.getId());
+        nbpCurrency.set_id(nbpCurrencyDto.get_id());
         nbpCurrency.setCurrency(nbpCurrencyDto.getCurrency());
         nbpCurrency.setCode(nbpCurrencyDto.getCode());
         nbpCurrency.setDate(nbpCurrencyDto.getRates()[0].getEffectiveDate());
@@ -19,7 +19,7 @@ public class NbpCurrencyMapper {
 
     private NbpCurrencyDto mapToNbpCurrencyDto(final NbpCurrency nbpCurrency) {
         return new NbpCurrencyDto(
-                nbpCurrency.getId(),
+                nbpCurrency.get_id(),
                 nbpCurrency.getCurrency(),
                 nbpCurrency.getCode(),
                 maptoNbpCurrencyRatesDtoArr(nbpCurrency));
