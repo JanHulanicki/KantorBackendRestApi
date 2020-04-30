@@ -1,4 +1,4 @@
-package com.app.kantor.domain;
+package com.app.kantor.domain.nbp;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,13 +16,13 @@ import lombok.Setter;
 public class NbpCurrencyRatesDto {
     @SerializedName("no")
     @Expose
-    public String no;
+    private String no;
     @SerializedName("effectiveDate")
     @Expose
-    public String effectiveDate;
+    private String effectiveDate;
     @SerializedName("mid")
     @Expose
-    public Double mid;
+    private BigDecimal mid;
 
     @Override
     public String toString() {

@@ -1,5 +1,7 @@
 package com.app.kantor.sandbox;
 
+import com.app.kantor.client.alphaVantage.crypto.CryptoClient;
+import com.app.kantor.client.alphaVantage.crypto.CryptoCurrencyCode;
 import com.app.kantor.client.nbp.NbpCurrenciesClient;
 import com.app.kantor.client.nbp.NbpCurrencyCode;
 import org.junit.Test;
@@ -15,16 +17,19 @@ import java.io.IOException;
 public class ExternSourceTestSuite {
     @Autowired
     NbpCurrenciesClient nbpCurrenciesClient;
-  //  @Autowired
-  //  AlphaVantage alphaVantage;
+    @Autowired
+    CryptoClient cryptoClient;
+//    @Autowired
+//    CryptoCurrencyCode cryptoCurrencyCode;
+
     @Test
     public void exSourceTest() throws IOException {
-        //nbpClientTest.getStreamInfo();
-       // alphaVantage.getStreamInfo();
         nbpCurrenciesClient.getActualCurrencyRateByCode(NbpCurrencyCode.CHF.toString());
         nbpCurrenciesClient.getActualCurrencyRateByCode(NbpCurrencyCode.GBP.toString());
-
-
+        nbpCurrenciesClient.getActualCurrencyRateByCode(NbpCurrencyCode.USD.toString());
+        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.BTC.getCryptoEndpoint());
+        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.ETH.getCryptoEndpoint());
+        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.LTC.getCryptoEndpoint());
+        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.XRP.getCryptoEndpoint());
     }
-
 }
