@@ -38,7 +38,7 @@ public class GlobalQuoteDto {
     private BigDecimal volume;
     @SerializedName("07. latest trading day")
     @Expose
-    private Date latestTradingDay;
+    private String latestTradingDay;
     @SerializedName("08. previous close")
     @Expose
     private BigDecimal previousClose;

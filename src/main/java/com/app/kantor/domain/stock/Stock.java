@@ -46,7 +46,7 @@ public class Stock {
     @Column(name = "volume")
     private BigDecimal volume;
     @Column(name = "latesTradingDay")
-    private Date latestTradingDay;
+    private String latestTradingDay;
     @Column(name = "previousClose")
     private BigDecimal previousClose;
     @Column(name = "change")

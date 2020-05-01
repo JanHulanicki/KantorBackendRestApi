@@ -11,12 +11,12 @@ import java.net.URL;
 
 @Component
 public class StockClient {
-    public void getActualStockByCode(String endpoit) throws IOException {
+    public StockDto getActualStockByCode(String endpoit) throws IOException {
         // URL url = new URL("https://api.nbp.pl/api/exchangerates/rates/a/chf/?format=json");
         URL url = new URL(endpoit);
         InputStreamReader reader = new InputStreamReader(url.openStream());
         StockDto stockDto = new Gson().fromJson(reader,StockDto.class);
         System.out.println(stockDto.toString());
-        // return nbpCurrencyDto;
+         return stockDto;
     }
 }
