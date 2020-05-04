@@ -31,5 +31,11 @@ public class CryptoCurrency {
 
     @Column(name = "MID")
     private BigDecimal mid;
+    public CryptoCurrency(String currency, String code, String date, BigDecimal mid) {
+        this.currency = currency;
+        this.code = code;
+        this.date = date;
+        this.mid = mid;
+    }
 
 }

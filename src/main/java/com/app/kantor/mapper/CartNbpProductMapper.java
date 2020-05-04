@@ -19,7 +19,7 @@ public class CartNbpProductMapper {
     @Autowired
     NbpCurrencyMapper nbpCurrencyMapper;
     @Autowired
-    CartNbpRepository cartRepository;
+    CartNbpRepository cartNbpRepository;
 
     public CartNbpProductDto mapToCartNbpProductDto(final CartNbpProduct cartNbpProduct) {
         CartNbpDto cartNbpDto = cartNbpMapper.mapToCartNbpDto(cartNbpProduct.getCartNbp());
@@ -30,7 +30,7 @@ public class CartNbpProductMapper {
     public CartNbpProduct mapToCartNbpProduct(final CartNbpProductDto cartProductDto) throws CartNbpNotFoundException {
         CartNbpProduct cartNbpProduct = new CartNbpProduct();
         cartNbpProduct.setId(cartProductDto.getId());
-        cartNbpProduct.setCartNbp(cartRepository.findById(cartProductDto.getCartNbpDto().getCartId()).orElseThrow(CartNbpNotFoundException::new));
+        cartNbpProduct.setCartNbp(cartNbpRepository.findById(cartProductDto.getCartNbpDto().getCartId()).orElseThrow(CartNbpNotFoundException::new));
         cartNbpProduct.setAmount(cartProductDto.getAmount());
         return cartNbpProduct;
     }

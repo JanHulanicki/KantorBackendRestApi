@@ -1,4 +1,6 @@
 package com.app.kantor.exception;
 
-public class CartNbpNotFoundException extends Exception{
+import java.util.function.Supplier;
+
+public class CartNbpNotFoundException extends Exception {
 }
