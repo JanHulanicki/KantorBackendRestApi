@@ -17,18 +17,19 @@ import java.math.BigDecimal;
 public class CryptoCurrency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CRYPTO_ID")
     private Long _id;
 
-    @Column(name = "currency")
+    @Column(name = "CURRENCY")
     private String currency;
 
-    @Column(name = "code")
+    @Column(name = "CODE")
     private String code;
 
-    @Column(name = "date")
+    @Column(name = "DATE")
     private String date;
 
-    @Column(name = "mid")
+    @Column(name = "MID")
     private BigDecimal mid;
 
 }

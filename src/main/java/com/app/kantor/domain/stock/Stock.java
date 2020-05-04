@@ -20,10 +20,11 @@ import java.util.Date;
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "STOCK_ID")
     private Long _id;
 
-    @Column(name = "stock")
-    private String currency;
+    @Column(name = "STOCK")
+    private String stock;
 
     @Column(name = "code")
     private String code;

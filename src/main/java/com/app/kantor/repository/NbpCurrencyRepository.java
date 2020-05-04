@@ -15,7 +15,7 @@ public interface NbpCurrencyRepository  extends JpaRepository<NbpCurrency, Long>
     NbpCurrency save(NbpCurrency nbpCurrency);
 
     @Override
-    Optional<NbpCurrency> findById(Long id);
+    Optional<NbpCurrency> findById(Long aLong);
 
     Optional<NbpCurrency> findCryptoCurrencyByCode(String code);
 }

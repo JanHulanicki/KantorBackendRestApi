@@ -15,7 +15,7 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
     Stock save(Stock stock);
 
     @Override
-    Optional<Stock> findById(Long id);
+    Optional<Stock> findById(Long aLong);
 
     Optional<Stock> findCryptoCurrencyByCode(String code);
 }
