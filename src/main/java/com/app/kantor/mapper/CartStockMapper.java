@@ -1,6 +1,6 @@
 package com.app.kantor.mapper;
 
-import com.app.kantor.domain.cart.CartNbp;
+import com.app.kantor.domain.cart.CartStock;
 import com.app.kantor.domain.cart.CartStock;
 import com.app.kantor.domain.cart.CartStockDto;
 import com.app.kantor.exception.UserNotFoundException;
@@ -17,11 +17,11 @@ public class CartStockMapper {
         return new CartStockDto(cartStock.getCartId(), cartStock.getCreated(), cartStock.getUser().getId());
     }
 
-    public CartNbp mapToCartStock(final CartStockDto cartNbpDto) throws UserNotFoundException {
-        CartNbp cartNbp = new CartNbp();
-        cartNbp.setCartId(cartNbpDto.getCartId());
-        cartNbp.setUser(userRepository.findById(cartNbpDto.getUserId()).orElseThrow(UserNotFoundException::new));
-        cartNbp.setCreated(cartNbpDto.getCreated());
-        return cartNbp;
+    public CartStock mapToCartStock(final CartStockDto cartStockDto) throws UserNotFoundException {
+        CartStock cartStock = new CartStock();
+        cartStock.setCartId(cartStockDto.getCartId());
+        cartStock.setUser(userRepository.findById(cartStockDto.getUserId()).orElseThrow(UserNotFoundException::new));
+        cartStock.setCreated(cartStockDto.getCreated());
+        return cartStock;
     }
 }

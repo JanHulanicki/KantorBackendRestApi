@@ -26,9 +26,9 @@ public class CartNbp {
     @Column(name = "CART_ID")
     private Long cartId;
     @Column(name = "CREATED")
-    private Date created;
+    private String created;
 
-    public CartNbp(Date created) {
+    public CartNbp(String created) {
         this.created = created;
     }
 

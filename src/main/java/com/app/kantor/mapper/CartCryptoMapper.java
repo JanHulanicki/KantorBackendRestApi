@@ -17,11 +17,11 @@ public class CartCryptoMapper {
         return new CartCryptoDto(cartCrypto.getCartId(), cartCrypto.getCreated(), cartCrypto.getUser().getId());
     }
 
-    public CartNbp mapToCartCrypto(final CartCryptoDto cartNbpDto) throws UserNotFoundException {
-        CartNbp cartNbp = new CartNbp();
-        cartNbp.setCartId(cartNbpDto.getCartId());
-        cartNbp.setUser(userRepository.findById(cartNbpDto.getUserId()).orElseThrow(UserNotFoundException::new));
-        cartNbp.setCreated(cartNbpDto.getCreated());
-        return cartNbp;
+    public CartCrypto mapToCartCrypto(final CartCryptoDto cartCryptoDto) throws UserNotFoundException {
+        CartCrypto cartCrypto= new CartCrypto();
+        cartCrypto.setCartId(cartCrypto.getCartId());
+        cartCrypto.setUser(userRepository.findById(cartCryptoDto.getUserId()).orElseThrow(UserNotFoundException::new));
+        cartCrypto.setCreated(cartCryptoDto.getCreated());
+        return cartCrypto;
     }
 }
