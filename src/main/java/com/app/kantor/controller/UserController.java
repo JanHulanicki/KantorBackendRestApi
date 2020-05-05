@@ -31,7 +31,7 @@ public class UserController {
         return userMapper.mapToUserDtoList(userService.getUsers());
     }
 
-    @GetMapping(value = "/owner/{usrtId}")
+    @GetMapping(value = "/user/{usrtId}")
     public UserDto getUserById(@PathVariable Long userId) throws UserNotFoundException {
         return userMapper.mapToUserDto(userService.getUserById(userId).orElseThrow(UserNotFoundException::new));
     }

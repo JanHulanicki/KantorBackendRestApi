@@ -26,9 +26,9 @@ public class CartStock {
     @Column(name = "CART_ID")
     private Long cartId;
     @Column(name = "CREATED")
-    private Date created;
+    private String created;
 
-    public CartStock(Date created) {
+    public CartStock(String created) {
         this.created = created;
     }
 

@@ -25,9 +25,9 @@ public class CartCrypto {
     @Column(name = "CART_ID")
     private Long cartId;
     @Column(name = "CREATED")
-    private Date created;
+    private String created;
 
-    public CartCrypto(Date created) {
+    public CartCrypto(String created) {
         this.created = created;
     }
 

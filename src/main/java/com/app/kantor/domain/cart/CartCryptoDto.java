@@ -13,10 +13,10 @@ import java.util.Date;
 @AllArgsConstructor
 public class CartCryptoDto {
     private Long cartId;
-    private Date created;
+    private String created;
     private Long userId;
 
-    public CartCryptoDto(Date created) {
+    public CartCryptoDto(String created) {
         this.created = created;
     }
 }

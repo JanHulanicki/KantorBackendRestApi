@@ -1,9 +1,7 @@
 package com.app.kantor.controller;
 
-import com.app.kantor.domain.crypto.CryptoCurrencyDto;
 import com.app.kantor.domain.stock.StockDto;
 import com.app.kantor.facade.stock.StockFacade;
-import com.app.kantor.facade.valut.CryptoFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

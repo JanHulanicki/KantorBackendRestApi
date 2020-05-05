@@ -23,28 +23,12 @@ public class RealtimeCurrencyExchangeRatedDto {
     @SerializedName("2. From_Currency Name")
     @Expose
     public String currency;
-//    @SerializedName("3. To_Currency Code")
-//    @Expose
-//    public String _3ToCurrencyCode;
-//    @SerializedName("4. To_Currency Name")
-//    @Expose
-//    public String _4ToCurrencyName;
     @SerializedName("5. Exchange Rate")
     @Expose
     public BigDecimal mid;
     @SerializedName("6. Last Refreshed")
     @Expose
     public String date;
-//    @SerializedName("7. Time Zone")
-//    @Expose
-//    public String _7TimeZone;
-//    @SerializedName("8. Bid Price")
-//    @Expose
-//    public String _8BidPrice;
-//    @SerializedName("9. Ask Price")
-//    @Expose
-//    public String _9AskPrice;
-
 
     @Override
     public String toString() {

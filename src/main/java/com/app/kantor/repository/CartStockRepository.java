@@ -1,6 +1,5 @@
 package com.app.kantor.repository;
 
-import com.app.kantor.domain.cart.CartCrypto;
 import com.app.kantor.domain.cart.CartStock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -20,4 +19,7 @@ public interface CartStockRepository extends JpaRepository<CartStock, Long> {
 
     @Override
     Optional<CartStock> findById(Long aLong);
+
+   // @Override
+   // void deleteById(Long aLong);
 }

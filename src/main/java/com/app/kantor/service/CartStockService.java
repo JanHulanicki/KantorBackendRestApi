@@ -28,7 +28,7 @@ public class CartStockService {
     @Autowired
     StockMapper stockMapper;
 
-    public CartStock createCartCrypto(final CartStock cartStock) {
+    public CartStock createCartStock(final CartStock cartStock) {
         return cartStockRepository.save(cartStock);
     }
 

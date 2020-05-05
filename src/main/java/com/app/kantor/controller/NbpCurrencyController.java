@@ -1,14 +1,13 @@
 package com.app.kantor.controller;
 
-import com.app.kantor.domain.crypto.CryptoCurrencyDto;
 import com.app.kantor.domain.nbp.NbpCurrencyDto;
-import com.app.kantor.facade.valut.CryptoFacade;
 import com.app.kantor.facade.valut.NbpFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1")
@@ -22,7 +21,7 @@ public class NbpCurrencyController {
     }
 
     @GetMapping(value = "/NbpCurrency")
-    public List< NbpCurrencyDto> getNbpCurrencies() {
+    public List<NbpCurrencyDto> getNbpCurrencies() {
         return nbpFacade.getAllNbpCurrency();
     }
 

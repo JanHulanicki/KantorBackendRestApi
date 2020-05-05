@@ -1,10 +1,10 @@
 package com.app.kantor.controller;
 
-import com.app.kantor.domain.cart.CartNbpDto;
-import com.app.kantor.domain.nbp.NbpCurrencyDto;
-import com.app.kantor.domain.nbp.NbpCurrencyRatesDto;
-import com.app.kantor.mapper.CartNbpMapper;
-import com.app.kantor.service.CartNbpService;
+import com.app.kantor.domain.cart.CartStockDto;
+import com.app.kantor.domain.stock.GlobalQuoteDto;
+import com.app.kantor.domain.stock.StockDto;
+import com.app.kantor.mapper.CartStockMapper;
+import com.app.kantor.service.CartStockService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.Test;
@@ -28,65 +28,69 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @RunWith(SpringRunner.class)
-@WebMvcTest(CartNbpController.class)
-public class CartNbpControllerTestSuite {
+@WebMvcTest(CartStockController.class)
+public class CartStockControllerTestSuite {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private CartNbpService cartNbpService;
+    private CartStockService cartStockService;
     @MockBean
-    private CartNbpMapper cartNbpMapper;
+    private CartStockMapper cartStockMapper;
 
     @Test
-    public void testCreateNbpCart() throws Exception {
+    public void testCreateCryptoCart() throws Exception {
         //Given
-        CartNbpDto cartNbpDto = new CartNbpDto(1L, "2000-12-14", 2L);
+        CartStockDto cartStockDto = new CartStockDto(1L, "2000-12-14", 2L);
         Gson gson = new Gson();
-        String jsonContent = gson.toJson(cartNbpDto);
+        String jsonContent = gson.toJson(cartStockDto);
 
         //When & Then
-        mockMvc.perform(post("/v1/nbpcart")
+        mockMvc.perform(post("/v1/stockcart")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().isOk())
                 .andDo(print());
 
-        verify(cartNbpService, times(1)).createCartNbp(cartNbpMapper.mapToCartNbp(any()));
+
+        verify(cartStockService, times(1)).createCartStock(cartStockMapper.mapToCartStock(any()));
     }
 
     @Test
-    public void testDeleteNbpCart() throws Exception {
+    public void testDeleteStockCart() throws Exception {
         //Given & When & Then
-        mockMvc.perform(delete("/v1/nbpcart/1")
+        mockMvc.perform(delete("/v1/stockcart/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
-
     @Test
-    public void testGetCurrencyList() throws Exception {
+    public void testGetStockList() throws Exception {
         //Given
-        List<NbpCurrencyDto> currencyDtoList = new ArrayList<>();
-        NbpCurrencyRatesDto[] rates = new NbpCurrencyRatesDto[1];
-        rates[0] = new NbpCurrencyRatesDto();
-        rates[0].setEffectiveDate("2020-01-02");
-        rates[0].setMid(new BigDecimal(4.6));
-        NbpCurrencyDto nbpCurrencyDto = new NbpCurrencyDto(1l, "euro", "EUR", rates);
-        currencyDtoList.add(nbpCurrencyDto);
-        when(cartNbpService.getNbpCurrencyFromCartNbp(1l)).thenReturn(currencyDtoList);
+        List<StockDto> stockDtoList = new ArrayList<>();
+
+       GlobalQuoteDto globalQuoteDto= new GlobalQuoteDto();
+       globalQuoteDto.set_id(1L);
+       globalQuoteDto.setSymbol("IBM");
+       globalQuoteDto.setOpen(new BigDecimal(100));
+       globalQuoteDto.setHigh(new BigDecimal(101));
+       globalQuoteDto.setLow(new BigDecimal(101));
+
+        StockDto stockDto = new StockDto(globalQuoteDto);
+
+        stockDtoList.add(stockDto);
+        when(cartStockService.getStockFromCartStock(1l)).thenReturn(stockDtoList);
 
         //When & Then
-        mockMvc.perform(get("/v1/nbpcurrency/1")
+        mockMvc.perform(get("/v1/stockprodcart/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0]._id", is(1)))
-                .andExpect(jsonPath("$[0].code", is("EUR")));
+                .andExpect(jsonPath("$.[0].globalQuoteDto._id", is(1)))
+                .andExpect(jsonPath("$.[0].globalQuoteDto.symbol", is("IBM")));
     }
 
-    @Test
+   @Test
     public void testAddProductToCartProduct() throws Exception {
         //Given
         Object addProdContrParam = new Object() {
@@ -99,19 +103,19 @@ public class CartNbpControllerTestSuite {
         String json = objectMapper.writeValueAsString(addProdContrParam);
 
         //When & Then
-        mockMvc.perform(post("/v1/nbpcurrency/1/2/3/2.0")
+        mockMvc.perform(post("/v1/stockprodcart/1/2/3/2.0")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)
                 .characterEncoding("UTF-8"))
                 .andExpect(status().isOk())
                 .andDo(print());
-        verify(cartNbpService, times(1)).addNbpCurrencyToCartNbpProduct(1L, 2L, 3L, 2.0);
+        verify(cartStockService, times(1)).addStockToCartStockProduct(1L, 2L, 3L, 2.0);
     }
 
     @Test
     public void testDeleteProductFromCartProduct() throws Exception {
         //Given & When & Then
-        mockMvc.perform(delete("/v1/nbpcurrency/1")
+        mockMvc.perform(delete("/v1/stockprodcart/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
