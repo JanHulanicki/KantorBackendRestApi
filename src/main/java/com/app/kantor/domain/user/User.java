@@ -17,8 +17,7 @@ import java.time.LocalDateTime;
 @Entity(name = "USERS")
 public class User {
     @Id
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID", unique = true)
     private long id;
 
