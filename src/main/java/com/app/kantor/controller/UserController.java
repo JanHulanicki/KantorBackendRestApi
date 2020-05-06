@@ -54,9 +54,7 @@ public class UserController {
         LocalDateTime expiredDate = LocalDateTime.now().plusHours(1);
         DateTimeFormatter formattedLoginTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String key = UUID.randomUUID().toString();
-
         UserDto user = userMapper.mapToUserDto(userService.getUserById(userId).orElseThrow(UserNotFoundException::new));
-
         LOGGER.info("User " + user.getNick() + " has just logged in. " + loginTimeStart.format(formattedLoginTime));
         LOGGER.info("User's key: " + key);
         user.setExpiredDate(expiredDate);

@@ -25,7 +25,7 @@ public class CryptoController {
         return cryptoFacade.getAllCryptoCurrency();
     }
 
-    @PostMapping(value = "/crypto/")
+    @PostMapping(value = "/crypto")
     public void saveCryptoRate(@RequestBody CryptoCurrencyDto cryptoCurrencyDto) {
         cryptoFacade.saveCryptoCurrency(cryptoCurrencyDto);
     }

@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
-   UserRepository userRepository;
+    UserRepository userRepository;
 
     public List<User> getUsers() {
         return userRepository.findAll();

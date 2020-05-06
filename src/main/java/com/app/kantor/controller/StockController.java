@@ -25,7 +25,7 @@ public class StockController {
         return stockFacade.getAllStock();
     }
 
-    @PostMapping(value = "/stock/")
+    @PostMapping(value = "/stock")
     public void saveStockRate(@RequestBody StockDto stockDto) {
         stockFacade.saveStock(stockDto);
     }

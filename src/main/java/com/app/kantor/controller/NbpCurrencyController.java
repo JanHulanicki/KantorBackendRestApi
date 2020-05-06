@@ -25,7 +25,7 @@ public class NbpCurrencyController {
         return nbpFacade.getAllNbpCurrency();
     }
 
-    @PostMapping(value = "/NbpCurrency/")
+    @PostMapping(value = "/NbpCurrency")
     public void saveNbpRate(@RequestBody NbpCurrencyDto nbpCurrencyDto) {
         nbpFacade.saveNbpCurrency(nbpCurrencyDto);
     }
