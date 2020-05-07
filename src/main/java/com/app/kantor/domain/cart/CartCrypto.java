@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@PersistenceContext
 @Entity(name = "CARTS_CRYPTO")
 public class CartCrypto {
     @Id
@@ -43,5 +44,14 @@ public class CartCrypto {
    )
     private List<CartCryptoProduct> cartCryptoProducts = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "CartCrypto{" +
+                "cartId=" + cartId +
+                ", created='" + created + '\'' +
+                ", user=" + user +
+                ", cartCryptoProducts=" + cartCryptoProducts +
+                '}';
+    }
 }
 

@@ -19,19 +19,15 @@ import java.util.Date;
 @Table(name = "NYSE_STOCK")
 public class Stock {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "STOCK_ID")
     private Long _id;
-
     @Column(name = "STOCK")
     private String stock;
-
     @Column(name = "code")
     private String code;
-
     @Column(name = "date")
     private String date;
-
     @Column(name = "mid")
     private BigDecimal mid;
     @Column(name = "symbol")
@@ -52,4 +48,11 @@ public class Stock {
     private BigDecimal previousClose;
     @Column(name = "change")
     private BigDecimal change;
+
+    public Stock(String stock, String symbol, String date, BigDecimal mid) {
+        this.stock = stock;
+        this.symbol = symbol;
+        this.date = date;
+        this.mid = mid;
+    }
 }

@@ -16,6 +16,7 @@ public class StockMapper {
     public Stock mapToStock(final StockDto stockDto) {
         Stock stock = new Stock();
         stock.set_id(stockDto.getGlobalQuoteDto().get_id());
+        stock.setStock(stockDto.getGlobalQuoteDto().getSymbol());
         stock.setSymbol(stockDto.getGlobalQuoteDto().getSymbol());
         stock.setOpen(stockDto.getGlobalQuoteDto().getOpen());
         stock.setHigh(stockDto.getGlobalQuoteDto().getHigh());

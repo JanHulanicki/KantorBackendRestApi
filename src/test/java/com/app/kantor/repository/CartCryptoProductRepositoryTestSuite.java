@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
 @SpringBootTest
 @Transactional
 @EnableTransactionManagement
+
 public class CartCryptoProductRepositoryTestSuite {
     @Autowired
     private CartCryptoProductRepository cartProductRepository;

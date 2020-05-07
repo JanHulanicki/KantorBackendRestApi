@@ -14,4 +14,14 @@ public class CartCryptoProductDto {
     private CartCryptoDto cartCryptoDto;
     private CryptoCurrencyDto productCryptoDto;
     private Double amount;
+
+    @Override
+    public String toString() {
+        return "CartCryptoProductDto{" +
+                "id=" + id +
+                ", cartCryptoDto=" + cartCryptoDto +
+                ", productCryptoDto=" + productCryptoDto +
+                ", amount=" + amount +
+                '}';
+    }
 }

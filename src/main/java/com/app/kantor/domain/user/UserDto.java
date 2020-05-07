@@ -20,4 +20,19 @@ public class UserDto {
     private Boolean isBlocked;
     private String uuidKey;
     private LocalDateTime expiredDate;
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", nick='" + nick + '\'' +
+                ", password='" + password + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", isBlocked=" + isBlocked +
+                ", uuidKey='" + uuidKey + '\'' +
+                ", expiredDate=" + expiredDate +
+                '}';
+    }
 }

@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Table(name = "NBP_CURRENCIES")
 public class NbpCurrency {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "NBP_ID")
     private Long _id;
 

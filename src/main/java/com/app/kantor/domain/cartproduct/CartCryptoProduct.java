@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Entity(name = "CARTS_CRYPTO_PRODUCTS")
+@PersistenceContext
 public class CartCryptoProduct {
     @Id
     @NotNull
@@ -35,7 +36,17 @@ public class CartCryptoProduct {
     @Column(name = "AMOUNT")
     private Double amount;
 
-    //public CartCryptoProduct(Long cartCryptoProductsId, CryptoCurrency cryptoCurrency, Double amount) {
+    @Override
+    public String toString() {
+        return "CartCryptoProduct{" +
+                "id=" + id +
+                ", cartCrypto=" + cartCrypto +
+                ", cryptoCurrency=" + cryptoCurrency +
+                ", amount=" + amount +
+                '}';
+    }
+}
+//public CartCryptoProduct(Long cartCryptoProductsId, CryptoCurrency cryptoCurrency, Double amount) {
     //}
 
     //public CartCryptoProduct(Long cartCryptoProductsId, Long id, Double amount) {
@@ -45,4 +56,3 @@ public class CartCryptoProduct {
 
     //}
 
-}

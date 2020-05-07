@@ -35,17 +35,17 @@ public class ExternSourceTestSuite {
 
     @Test
     public void exSourceTest() throws IOException {
-        nbpCurrenciesClient.getActualCurrencyRateByCode(NbpCurrencyCode.CHF.toString());
-        nbpCurrenciesClient.getActualCurrencyRateByCode(NbpCurrencyCode.GBP.toString());
-        nbpCurrenciesClient.getActualCurrencyRateByCode(NbpCurrencyCode.USD.toString());
-        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.BTC.getCryptoEndpoint());
-        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.ETH.getCryptoEndpoint());
-        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.LTC.getCryptoEndpoint());
-        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.XRP.getCryptoEndpoint());
-        stockClient.getActualStockByCode(StockCode.AlPHABET.getStockEndpoint());
-        stockClient.getActualStockByCode(StockCode.IBM.getStockEndpoint());
-        stockClient.getActualStockByCode(StockCode.LOCKHEED.getStockEndpoint());
-        stockClient.getActualStockByCode(StockCode.NESTLEADR.getStockEndpoint());
+//        nbpCurrenciesClient.getActualCurrencyRateByCode(NbpCurrencyCode.CHF.toString());
+//        nbpCurrenciesClient.getActualCurrencyRateByCode(NbpCurrencyCode.GBP.toString());
+//        nbpCurrenciesClient.getActualCurrencyRateByCode(NbpCurrencyCode.USD.toString());
+//        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.BTC.getCryptoEndpoint());
+//        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.ETH.getCryptoEndpoint());
+//        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.LTC.getCryptoEndpoint());
+//        cryptoClient.getActualCryptoCurrencyRateByCode(CryptoCurrencyCode.XRP.getCryptoEndpoint());
+//        stockClient.getActualStockByCode(StockCode.AlPHABET.getStockEndpoint());
+//        stockClient.getActualStockByCode(StockCode.IBM.getStockEndpoint());
+//        stockClient.getActualStockByCode(StockCode.LOCKHEED.getStockEndpoint());
+//        stockClient.getActualStockByCode(StockCode.NESTLEADR.getStockEndpoint());
 
     }
 }

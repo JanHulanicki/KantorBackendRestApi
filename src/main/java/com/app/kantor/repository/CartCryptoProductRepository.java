@@ -17,5 +17,8 @@ public interface CartCryptoProductRepository extends JpaRepository<CartCryptoPro
     Optional<CartCryptoProduct> findById(Long aLong);
 
     @Override
+    CartCryptoProduct getOne(Long aLong);
+
+    @Override
     void deleteById(Long aLong);
 }

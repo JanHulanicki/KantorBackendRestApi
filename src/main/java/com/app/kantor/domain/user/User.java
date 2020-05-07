@@ -14,10 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
+@PersistenceContext
 @Entity(name = "USERS")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USER_ID", unique = true)
     private long id;
 
@@ -37,7 +38,7 @@ public class User {
     @Column(name = "SURNAME")
     private String surname;
 
-    @NotNull
+
     @Column(name = "STATUS")
     private Boolean isBlocked;
 
@@ -48,16 +49,17 @@ public class User {
     private LocalDateTime expiredDate;
 
     @JoinColumn(name = "CART_NBP_ID", unique = true)
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     public CartNbp cartNbp;
 
     @JoinColumn(name = "CART_CRYPTO_ID", unique = true)
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     public CartCrypto cartCrypto;
 
     @JoinColumn(name = "CART_STOCK_ID", unique = true)
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     public CartStock cartStock;
+
 
 
     public User(String nick, String password, String emailAddress, String name, String surname, Boolean isBlocked, String uuidKey, LocalDateTime expiredDate) {
@@ -70,5 +72,22 @@ public class User {
         this.isBlocked = isBlocked;
         this.uuidKey = uuidKey;
         this.expiredDate = expiredDate;
+    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nick='" + nick + '\'' +
+                ", password='" + password + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", isBlocked=" + isBlocked +
+                ", uuidKey='" + uuidKey + '\'' +
+                ", expiredDate=" + expiredDate +
+                ", cartNbp=" + cartNbp +
+                ", cartCrypto=" + cartCrypto +
+                ", cartStock=" + cartStock +
+                '}';
     }
 }

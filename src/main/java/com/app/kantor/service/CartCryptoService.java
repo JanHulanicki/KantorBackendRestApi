@@ -41,6 +41,7 @@ public class CartCryptoService {
             CartCrypto cartCrypto = cartCryptoRepository.findById(cartId).orElseThrow(CartCryptoNotFoundException::new);
             List<CryptoCurrency> cryptoCurrencyList = cartCrypto.getCartCryptoProducts().stream()
                     .map(CartCryptoProduct::getCryptoCurrency).collect(Collectors.toList());
+            System.out.println(cryptoCurrencyList.toString());
             return cryptoCurrencyMapper.mapToCryptoCurrencyDtoList(cryptoCurrencyList);
         } else {
             throw new CartNbpNotFoundException();
@@ -50,10 +51,10 @@ public class CartCryptoService {
     public void addCryptoCurrencyToCartCryptoProduct(final Long cartCryptoProductsId,final Long cartCryptoId, final Long cryptoCurrencytId, Double amount) throws  CartCryptoProductNotFoundException, CryptoCurrencyNotFoundException {
         if (cartCryptoProductRepository.findById(cartCryptoProductsId).isPresent()) {
             if (cryptoCurrencyRepository.findById(cryptoCurrencytId).isPresent()) {
-                CryptoCurrency cryptoCurrency = new CryptoCurrency(cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getCurrency(),
-                        cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getCode(),
-                        cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getDate(),
-                        cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getMid());
+              //  CryptoCurrency cryptoCurrency = new CryptoCurrency(cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getCurrency(),
+              //          cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getCode(),
+              //          cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getDate(),
+                //        cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getMid());
                 CartCryptoProduct cartCryptoProduct= new CartCryptoProduct(cartCryptoProductsId,cartCryptoRepository.findById(cartCryptoId).get(),cryptoCurrencyRepository.findById(cryptoCurrencytId).get(),amount);
                 cartCryptoProductRepository.save(cartCryptoProduct);
             } else {

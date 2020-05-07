@@ -16,6 +16,9 @@ public interface CryptoCurrencyRepository extends JpaRepository<CryptoCurrency, 
     @Override
     Optional<CryptoCurrency> findById(Long aLong);
 
+    @Override
+    CryptoCurrency getOne(Long aLong);
+
     Optional<CryptoCurrency> findCryptoCurrencyByCode(String code);
 
 }
