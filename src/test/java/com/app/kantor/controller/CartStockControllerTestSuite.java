@@ -28,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(CartStockController.class)
 public class CartStockControllerTestSuite {
@@ -53,7 +54,6 @@ public class CartStockControllerTestSuite {
                 .andExpect(status().isOk())
                 .andDo(print());
 
-
         verify(cartStockService, times(1)).createCartStock(cartStockMapper.mapToCartStock(any()));
     }
 
@@ -64,20 +64,18 @@ public class CartStockControllerTestSuite {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
     @Test
     public void testGetStockList() throws Exception {
         //Given
         List<StockDto> stockDtoList = new ArrayList<>();
-
-       GlobalQuoteDto globalQuoteDto= new GlobalQuoteDto();
-       globalQuoteDto.set_id(1L);
-       globalQuoteDto.setSymbol("IBM");
-       globalQuoteDto.setOpen(new BigDecimal(100));
-       globalQuoteDto.setHigh(new BigDecimal(101));
-       globalQuoteDto.setLow(new BigDecimal(101));
-
+        GlobalQuoteDto globalQuoteDto = new GlobalQuoteDto();
+        globalQuoteDto.set_id(1L);
+        globalQuoteDto.setSymbol("IBM");
+        globalQuoteDto.setOpen(new BigDecimal(100));
+        globalQuoteDto.setHigh(new BigDecimal(101));
+        globalQuoteDto.setLow(new BigDecimal(101));
         StockDto stockDto = new StockDto(globalQuoteDto);
-
         stockDtoList.add(stockDto);
         when(cartStockService.getStockFromCartStock(1l)).thenReturn(stockDtoList);
 
@@ -90,7 +88,7 @@ public class CartStockControllerTestSuite {
                 .andExpect(jsonPath("$.[0].globalQuoteDto.symbol", is("IBM")));
     }
 
-   @Test
+    @Test
     public void testAddProductToCartProduct() throws Exception {
         //Given
         Object addProdContrParam = new Object() {

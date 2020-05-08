@@ -15,9 +15,6 @@ import java.util.Arrays;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NbpCurrencyDto {
     private Long _id;
-  //  @SerializedName("table")
-  //  @Expose
-  //  public String table;
     @SerializedName("currency")
     @Expose
     private String currency;
@@ -26,16 +23,15 @@ public class NbpCurrencyDto {
     private String code;
     @SerializedName("rates")
     @Expose
-    //public List<NbpCurrencyRatesDto> rates = null;
-    private     NbpCurrencyRatesDto[] rates;
+    private NbpCurrencyRatesDto[] rates;
 
-  @Override
-  public String toString() {
-    return "NbpCurrencyDto{" +
-            "currency='" + currency + '\'' +
-            ", code='" + code + '\'' +
-            ", rates=" + Arrays.toString(rates) +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "NbpCurrencyDto{" +
+                "currency='" + currency + '\'' +
+                ", code='" + code + '\'' +
+                ", rates=" + Arrays.toString(rates) +
+                '}';
+    }
 }
 

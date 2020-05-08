@@ -1,9 +1,7 @@
 package com.app.kantor.domain.cartproduct;
 
 import com.app.kantor.domain.cart.CartNbp;
-import com.app.kantor.domain.crypto.CryptoCurrency;
 import com.app.kantor.domain.nbp.NbpCurrency;
-import com.app.kantor.domain.stock.Stock;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

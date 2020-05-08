@@ -1,6 +1,5 @@
 package com.app.kantor.repository;
 
-import com.app.kantor.domain.cart.CartNbp;
 import com.app.kantor.domain.cart.CartStock;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,11 +26,14 @@ public class CartStockRepositoryTestSuite {
     public void findAll() {
         //Given
         CartStock cartStock = new CartStock();
+
         //When
         cartStockRepository.save(cartStock);
         List<CartStock> cartCryptoList = cartStockRepository.findAll();
+
         //Then
         Assert.assertEquals(1, cartCryptoList.size());
+
         //CleanUp
         cartStockRepository.deleteById(cartStock.getCartId());
         Assert.assertFalse(cartStockRepository.findById(cartStock.getCartId()).isPresent());
@@ -41,11 +43,14 @@ public class CartStockRepositoryTestSuite {
     public void findById() {
         //Given
         CartStock cartStock = new CartStock();
+
         //When
         cartStockRepository.save(cartStock);
         Optional<CartStock> cartNbpById = cartStockRepository.findById(cartStock.getCartId());
+
         //Then
         Assert.assertTrue(cartNbpById.isPresent());
+
         //CleanUp
         cartStockRepository.deleteById(cartStock.getCartId());
         Assert.assertFalse(cartStockRepository.findById(cartStock.getCartId()).isPresent());

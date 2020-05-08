@@ -35,17 +35,14 @@ public class NbpCurrencyControllerTestSuite {
     @MockBean
     private NbpFacade nbpFacade;
 
-
     @Test
     public void testGetActualNbpRate() throws Exception {
         //Given
-
         NbpCurrencyRatesDto[] rates = new NbpCurrencyRatesDto[1];
         rates[0] = new NbpCurrencyRatesDto();
         rates[0].setEffectiveDate("2020-01-02");
         rates[0].setMid(new BigDecimal(4.6));
         NbpCurrencyDto nbpCurrencyDto = new NbpCurrencyDto(1l, "euro", "EUR", rates);
-
         when(nbpFacade.getNbpCurrency("EUR")).thenReturn(nbpCurrencyDto);
 
         //When & Then

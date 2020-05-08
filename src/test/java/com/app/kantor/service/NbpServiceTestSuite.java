@@ -1,8 +1,6 @@
 package com.app.kantor.service;
 
-import com.app.kantor.client.alphaVantage.crypto.CryptoCurrencyCode;
 import com.app.kantor.client.nbp.NbpCurrencyCode;
-import com.app.kantor.domain.crypto.CryptoCurrency;
 import com.app.kantor.domain.nbp.NbpCurrency;
 import com.app.kantor.repository.NbpCurrencyRepository;
 import org.junit.Test;
@@ -37,18 +35,23 @@ public class NbpServiceTestSuite {
     public void saveNbpCurrencyTest() {
         //Given
         nbpCurrency = new NbpCurrency("USDOLAR", "USD", "2020-05-05", new BigDecimal(1111));
+
         //When
         nbpCurrencyService.saveNbpCurrency(nbpCurrency);
+
         //Then
         assertEquals("USDOLAR", nbpCurrencyRepository.getOne(nbpCurrency.get_id()).getCurrency());
         assertEquals("USD", nbpCurrencyRepository.getOne(nbpCurrency.get_id()).getCode());
     }
+
     @Test
-    public void  getActualNdpCurrencyTest() throws IOException {
+    public void getActualNdpCurrencyTest() throws IOException {
         //Given
         nbpCurrency = new NbpCurrency();
+
         //When
         nbpCurrency = nbpCurrencyService.getActualNdpCurrency(NbpCurrencyCode.CHF.toString());
+
         //Then
         assertEquals("CHF", nbpCurrency.getCode());
     }
@@ -59,9 +62,11 @@ public class NbpServiceTestSuite {
         nbpCurrency = new NbpCurrency();
         nbpCurrency = nbpCurrency = nbpCurrencyService.getActualNdpCurrency(NbpCurrencyCode.CHF.toString());
         nbpCurrencyService.saveNbpCurrency(nbpCurrency);
-        List<NbpCurrency> nbpCurrencies=new ArrayList<>();
+        List<NbpCurrency> nbpCurrencies = new ArrayList<>();
+
         //When
-        nbpCurrencies= nbpCurrencyService.getNbpCurrencies();
+        nbpCurrencies = nbpCurrencyService.getNbpCurrencies();
+
         //Then
         assertEquals(1, nbpCurrencies.size());
     }

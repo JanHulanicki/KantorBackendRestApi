@@ -35,11 +35,9 @@ public class CryptoCurrencyControllerTestSuite {
     @MockBean
     private CryptoFacade cryptoFacade;
 
-
     @Test
     public void testGetActualNbpRate() throws Exception {
         //Given
-
         RealtimeCurrencyExchangeRatedDto realtimeCurrencyExchangeRatedDto = new RealtimeCurrencyExchangeRatedDto();
         realtimeCurrencyExchangeRatedDto.set_id(1L);
         realtimeCurrencyExchangeRatedDto.setCode("BTC");
@@ -47,7 +45,6 @@ public class CryptoCurrencyControllerTestSuite {
         realtimeCurrencyExchangeRatedDto.setMid(new BigDecimal(10000));
         realtimeCurrencyExchangeRatedDto.setDate("2020-01-02");
         CryptoCurrencyDto cryptoCurrencyDto = new CryptoCurrencyDto(realtimeCurrencyExchangeRatedDto);
-
         when(cryptoFacade.getCryptoCurrency("BTC")).thenReturn(cryptoCurrencyDto);
 
         //When & Then
@@ -87,6 +84,7 @@ public class CryptoCurrencyControllerTestSuite {
         CryptoCurrencyDto currencyDto = new CryptoCurrencyDto();
         Gson gson = new Gson();
         String jsonContent = gson.toJson(currencyDto);
+
         //When & Then
         mockMvc.perform(post("/v1/crypto")
                 .contentType(MediaType.APPLICATION_JSON)

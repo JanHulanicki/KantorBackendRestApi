@@ -73,6 +73,7 @@ public class CartCryptoServiceTestSuite {
 
         //When
         cartCryptoService.createCartCrypto(cartCrypto);
+
         //Then
         assertEquals("2020-05-05", cartCryptoRepository.findById(cartCrypto.getCartId()).get().getCreated());
     }
@@ -97,9 +98,9 @@ public class CartCryptoServiceTestSuite {
 
         //When
         cartCryptoService.createCartCrypto(cartCrypto);
-        //  assertEquals(java.util.Optional.of(1L), java.util.Optional.of(cartCryptoRepository.findById(cartCrypto.getCartId()).get().getCartId()));
         Assert.assertTrue(cartCryptoRepository.findById(cartCrypto.getCartId()).isPresent());
         cartCryptoService.deleteCartCrypto(cartCrypto.getCartId());
+
         //Then
         Assert.assertFalse(cartCryptoRepository.findById(cartCrypto.getCartId()).isPresent());
     }

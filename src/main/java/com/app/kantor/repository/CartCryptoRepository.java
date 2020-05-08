@@ -1,7 +1,6 @@
 package com.app.kantor.repository;
 
 import com.app.kantor.domain.cart.CartCrypto;
-import com.app.kantor.domain.cart.CartNbp;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

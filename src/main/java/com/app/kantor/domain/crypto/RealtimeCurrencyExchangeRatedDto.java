@@ -3,7 +3,6 @@ package com.app.kantor.domain.crypto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,11 +11,9 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RealtimeCurrencyExchangeRatedDto {
-    private Long _id;
     @SerializedName("1. From_Currency Code")
     @Expose
     public String code;
@@ -29,6 +26,7 @@ public class RealtimeCurrencyExchangeRatedDto {
     @SerializedName("6. Last Refreshed")
     @Expose
     public String date;
+    private Long _id;
 
     @Override
     public String toString() {

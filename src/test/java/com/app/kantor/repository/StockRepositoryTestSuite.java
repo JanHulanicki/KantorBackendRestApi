@@ -26,11 +26,14 @@ public class StockRepositoryTestSuite {
     public void findAll() {
         //Given
         Stock stock = new Stock();
+
         //When
         stockRepository.save(stock);
         List<Stock> stocks = stockRepository.findAll();
+
         //Then
         Assert.assertEquals(1, stocks.size());
+
         //CleanUp
         stockRepository.deleteById(stock.get_id());
         Assert.assertFalse(stockRepository.findById(stock.get_id()).isPresent());
@@ -40,11 +43,14 @@ public class StockRepositoryTestSuite {
     public void findById() {
         //Given
         Stock stock = new Stock();
+
         //When
         stockRepository.save(stock);
         Optional<Stock> stockById = stockRepository.findById(stock.get_id());
+
         //Then
         Assert.assertTrue(stockById.isPresent());
+
         //CleanUp
         stockRepository.deleteById(stock.get_id());
         Assert.assertFalse(stockRepository.findById(stock.get_id()).isPresent());

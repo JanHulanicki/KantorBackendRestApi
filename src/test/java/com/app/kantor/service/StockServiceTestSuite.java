@@ -1,8 +1,6 @@
 package com.app.kantor.service;
 
 import com.app.kantor.client.alphaVantage.stock.StockCode;
-import com.app.kantor.client.nbp.NbpCurrencyCode;
-import com.app.kantor.domain.nbp.NbpCurrency;
 import com.app.kantor.domain.stock.Stock;
 import com.app.kantor.repository.StockRepository;
 import org.junit.Test;
@@ -43,12 +41,15 @@ public class StockServiceTestSuite {
         assertEquals("Ibm", stockRepository.getOne(stock.get_id()).getStock());
         assertEquals("IBM", stockRepository.getOne(stock.get_id()).getSymbol());
     }
+
     @Test
-    public void  getActualStockTest() throws IOException {
+    public void getActualStockTest() throws IOException {
         //Given
         stock = new Stock();
+
         //When
         stock = stockService.getActualStock(StockCode.IBM.getStockEndpoint());
+
         //Then
         assertEquals("IBM", stock.getSymbol());
     }
@@ -59,9 +60,11 @@ public class StockServiceTestSuite {
         stock = new Stock();
         stock = stock = stockService.getActualStock(StockCode.IBM.getStockEndpoint());
         stockService.saveStock(stock);
-        List<Stock> allStock=new ArrayList<>();
+        List<Stock> allStock = new ArrayList<>();
+
         //When
-        allStock= stockService.getAllStock();
+        allStock = stockService.getAllStock();
+
         //Then
         assertEquals(1, allStock.size());
     }

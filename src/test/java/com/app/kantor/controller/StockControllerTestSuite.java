@@ -34,7 +34,6 @@ public class StockControllerTestSuite {
     @MockBean
     private StockFacade stockFacade;
 
-
     @Test
     public void testGetActualStock() throws Exception {
         //Given
@@ -43,6 +42,7 @@ public class StockControllerTestSuite {
         quotes.setSymbol("IBM");
         StockDto stockDto = new StockDto(quotes);
         when(stockFacade.getStock("IBM")).thenReturn(stockDto);
+
         //When & Then
         mockMvc.perform(get("/v1/stock/IBM")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -61,6 +61,7 @@ public class StockControllerTestSuite {
         StockDto stockDto = new StockDto(quotes);
         stockDtoList.add(stockDto);
         when(stockFacade.getAllStock()).thenReturn(stockDtoList);
+
         //When & Then
         mockMvc.perform(get("/v1/stock")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -76,6 +77,7 @@ public class StockControllerTestSuite {
         StockDto stockDto = new StockDto();
         Gson gson = new Gson();
         String jsonContent = gson.toJson(stockDto);
+
         //When & Then
         mockMvc.perform(post("/v1/stock")
                 .contentType(MediaType.APPLICATION_JSON)

@@ -1,13 +1,18 @@
 package com.app.kantor.service;
 
 import com.app.kantor.domain.cart.CartStock;
-
 import com.app.kantor.domain.cartproduct.CartStockProduct;
 import com.app.kantor.domain.stock.Stock;
 import com.app.kantor.domain.stock.StockDto;
 import com.app.kantor.domain.user.User;
-import com.app.kantor.exception.*;
-import com.app.kantor.repository.*;
+import com.app.kantor.exception.CartCryptoProductNotFoundException;
+import com.app.kantor.exception.CartStockNotFoundException;
+import com.app.kantor.exception.CartStockProductNotFoundException;
+import com.app.kantor.exception.StockNotFoundException;
+import com.app.kantor.repository.CartStockProductRepository;
+import com.app.kantor.repository.CartStockRepository;
+import com.app.kantor.repository.StockRepository;
+import com.app.kantor.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -68,6 +73,7 @@ public class CartStockServiceTestSuite {
 
         //When
         cartStockService.createCartStock(cartStock);
+
         //Then
         assertEquals("2020-05-05", cartStockRepository.findById(cartStock.getCartId()).get().getCreated());
     }
@@ -94,6 +100,7 @@ public class CartStockServiceTestSuite {
         cartStockService.createCartStock(cartStock);
         Assert.assertTrue(cartStockRepository.findById(cartStock.getCartId()).isPresent());
         cartStockService.deleteCartStock(cartStock.getCartId());
+
         //Then
         Assert.assertFalse(cartStockRepository.findById(cartStock.getCartId()).isPresent());
     }
@@ -120,14 +127,16 @@ public class CartStockServiceTestSuite {
         stockCurrencyRepository.save(stock);
         cartStockProductRepository.save(cartStockProduct);
         cartStockRepository.save(cartStock);
+
         //When
         stockDtoList = cartStockService.getStockFromCartStock(cartStock.getCartId());
-       //Then
+
+        //Then
         assertEquals("IBM", stockDtoList.get(0).getGlobalQuoteDto().getSymbol());
     }
 
     @Test
-    public void addCryptoCurrencyToCartCryptoProduct() throws  CartStockProductNotFoundException, StockNotFoundException {
+    public void addCryptoCurrencyToCartCryptoProduct() throws CartStockProductNotFoundException, StockNotFoundException {
         //Given
         stock = new Stock("Ibm", "IBM", "2020-05-05", new BigDecimal(1111));
         user = new User("nick", "password", "sample@mail.com",
@@ -155,6 +164,7 @@ public class CartStockServiceTestSuite {
         //When
         cartStockService.addStockToCartStockProduct(a1, a2, a3, 10.5);
         Double amount = cartStockProductRepository.getOne(cartStockProduct.getId()).getAmount();
+
         //Then
         assertEquals((Double) 10.5, amount);
     }
@@ -181,6 +191,7 @@ public class CartStockServiceTestSuite {
         stockCurrencyRepository.save(stock);
         cartStockRepository.save(cartStock);
         cartStockProductRepository.save(cartStockProduct);
+
         //When & Then
         Assert.assertTrue(cartStockProductRepository.findById(cartStockProduct.getId()).isPresent());
         cartStockService.deleteCartStockProduct(cartStockProduct.getId());

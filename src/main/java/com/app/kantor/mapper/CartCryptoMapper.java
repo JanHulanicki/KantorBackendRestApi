@@ -1,7 +1,6 @@
 package com.app.kantor.mapper;
 
 import com.app.kantor.domain.cart.CartCrypto;
-import com.app.kantor.domain.cart.CartNbp;
 import com.app.kantor.domain.cart.CartCryptoDto;
 import com.app.kantor.exception.UserNotFoundException;
 import com.app.kantor.repository.UserRepository;
@@ -18,7 +17,7 @@ public class CartCryptoMapper {
     }
 
     public CartCrypto mapToCartCrypto(final CartCryptoDto cartCryptoDto) throws UserNotFoundException {
-        CartCrypto cartCrypto= new CartCrypto();
+        CartCrypto cartCrypto = new CartCrypto();
         cartCrypto.setCartId(cartCrypto.getCartId());
         cartCrypto.setUser(userRepository.findById(cartCryptoDto.getUserId()).orElseThrow(UserNotFoundException::new));
         cartCrypto.setCreated(cartCryptoDto.getCreated());

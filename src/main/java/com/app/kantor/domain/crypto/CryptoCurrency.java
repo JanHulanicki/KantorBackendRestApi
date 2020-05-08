@@ -1,19 +1,14 @@
 package com.app.kantor.domain.crypto;
 
-import com.app.kantor.domain.cartproduct.CartCryptoProduct;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @PersistenceContext
@@ -35,15 +30,6 @@ public class CryptoCurrency {
 
     @Column(name = "MID")
     private BigDecimal mid;
-  //  @OneToMany(
- //           targetEntity = CartCryptoProduct.class,
- //           mappedBy = "cartCrypto",
- //           orphanRemoval = true,
- //           cascade = CascadeType.PERSIST,
- //           fetch = FetchType.LAZY//EAGER
- //   )
- //   private List<CartCryptoProduct> cartCryptoProducts = new ArrayList<>();
-
 
     public CryptoCurrency(String currency, String code, String date, BigDecimal mid) {
         this.currency = currency;

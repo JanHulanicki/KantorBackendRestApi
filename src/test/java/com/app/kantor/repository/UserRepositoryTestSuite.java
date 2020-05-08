@@ -1,6 +1,5 @@
 package com.app.kantor.repository;
 
-import com.app.kantor.domain.stock.Stock;
 import com.app.kantor.domain.user.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,13 +25,15 @@ public class UserRepositoryTestSuite {
     @Test
     public void findAll() {
         //Given
-        User user = new User("nick","password","sample@mail.com",
-                "Name","Big",false,null, null);
+        User user = new User("nick", "password", "sample@mail.com",
+                "Name", "Big", false, null, null);
         //When
         userRepository.save(user);
         List<User> users = userRepository.findAll();
+
         //Then
         Assert.assertEquals(1, users.size());
+
         //CleanUp
         userRepository.deleteById(user.getId());
         Assert.assertFalse(userRepository.findById(user.getId()).isPresent());
@@ -41,13 +42,15 @@ public class UserRepositoryTestSuite {
     @Test
     public void findById() {
         //Given
-        User user = new User("nick","password","sample@mail.com",
-                "Name","Big",false,null, null);
+        User user = new User("nick", "password", "sample@mail.com",
+                "Name", "Big", false, null, null);
         //When
         userRepository.save(user);
         Optional<User> userById = userRepository.findById(user.getId());
+
         //Then
         Assert.assertTrue(userById.isPresent());
+
         //CleanUp
         userRepository.deleteById(user.getId());
         Assert.assertFalse(userRepository.findById(user.getId()).isPresent());

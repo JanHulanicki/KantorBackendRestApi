@@ -1,15 +1,15 @@
 package com.app.kantor.service;
 
-import com.app.kantor.domain.cart.CartCrypto;
 import com.app.kantor.domain.cart.CartNbp;
-import com.app.kantor.domain.cartproduct.CartCryptoProduct;
 import com.app.kantor.domain.cartproduct.CartNbpProduct;
-import com.app.kantor.domain.crypto.CryptoCurrency;
 import com.app.kantor.domain.nbp.NbpCurrency;
 import com.app.kantor.domain.nbp.NbpCurrencyDto;
 import com.app.kantor.domain.user.User;
 import com.app.kantor.exception.*;
-import com.app.kantor.repository.*;
+import com.app.kantor.repository.CartNbpProductRepository;
+import com.app.kantor.repository.CartNbpRepository;
+import com.app.kantor.repository.NbpCurrencyRepository;
+import com.app.kantor.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -96,6 +96,7 @@ public class CartNbpServiceTestSuite {
         cartNbpService.createCartNbp(cartNbp);
         Assert.assertTrue(cartNbpRepository.findById(cartNbp.getCartId()).isPresent());
         cartNbpService.deleteCartNbp(cartNbp.getCartId());
+
         //Then
         Assert.assertFalse(cartNbpRepository.findById(cartNbp.getCartId()).isPresent());
     }
@@ -122,9 +123,11 @@ public class CartNbpServiceTestSuite {
         nbpCurrencyRepository.save(nbpCurrency);
         cartNbpProductRepository.save(cartNbpProduct);
         cartNbpRepository.save(cartNbp);
+
         //When
         nbpCurrencyDtoList = cartNbpService.getNbpCurrencyFromCartNbp(cartNbp.getCartId());
         System.out.println(nbpCurrencyDtoList.toString());
+
         //Then
         assertEquals("USD", nbpCurrencyDtoList.get(0).getCode());
     }
@@ -158,6 +161,7 @@ public class CartNbpServiceTestSuite {
         //When
         cartNbpService.addNbpCurrencyToCartNbpProduct(a1, a2, a3, 10.5);
         Double amount = cartNbpProductRepository.getOne(cartNbpProduct.getId()).getAmount();
+
         //Then
         assertEquals((Double) 10.5, amount);
     }

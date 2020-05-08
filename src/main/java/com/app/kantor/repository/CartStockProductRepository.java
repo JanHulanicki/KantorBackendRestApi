@@ -1,6 +1,5 @@
 package com.app.kantor.repository;
 
-import com.app.kantor.domain.cartproduct.CartCryptoProduct;
 import com.app.kantor.domain.cartproduct.CartStockProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 

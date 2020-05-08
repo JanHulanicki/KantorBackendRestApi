@@ -35,18 +35,23 @@ public class CryptoServiceTestSuite {
     public void saveCryptoTest() {
         //Given
         cryptoCurrency = new CryptoCurrency("BITCOIN", "BTC", "2020-05-05", new BigDecimal(1111));
+
         //When
         cryptoService.saveCrypto(cryptoCurrency);
+
         //Then
         assertEquals("BITCOIN", cryptoCurrencyRepository.getOne(cryptoCurrency.get_id()).getCurrency());
         assertEquals("BTC", cryptoCurrencyRepository.getOne(cryptoCurrency.get_id()).getCode());
     }
+
     @Test
     public void getActualCryptoRateTest() throws IOException {
         //Given
         cryptoCurrency = new CryptoCurrency();
+
         //When
-        cryptoCurrency=cryptoService.getActualCryptoRate(CryptoCurrencyCode.BTC.getCryptoEndpoint());
+        cryptoCurrency = cryptoService.getActualCryptoRate(CryptoCurrencyCode.BTC.getCryptoEndpoint());
+
         //Then
         assertEquals("BTC", cryptoCurrency.getCode());
     }
@@ -55,11 +60,13 @@ public class CryptoServiceTestSuite {
     public void getAllCryptoTest() throws IOException {
         //Given
         cryptoCurrency = new CryptoCurrency();
-        cryptoCurrency=cryptoService.getActualCryptoRate(CryptoCurrencyCode.BTC.getCryptoEndpoint());
+        cryptoCurrency = cryptoService.getActualCryptoRate(CryptoCurrencyCode.BTC.getCryptoEndpoint());
         cryptoService.saveCrypto(cryptoCurrency);
-        List<CryptoCurrency> cryptoCurrencies=new ArrayList<>();
+        List<CryptoCurrency> cryptoCurrencies = new ArrayList<>();
+
         //When
-        cryptoCurrencies= cryptoService.getAllCrypto();
+        cryptoCurrencies = cryptoService.getAllCrypto();
+
         //Then
         assertEquals(1, cryptoCurrencies.size());
     }

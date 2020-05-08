@@ -50,7 +50,6 @@ public class UserControllerTestSuite {
         UserDto userDto = new UserDto();
         userDto.setId(1L);
         userDto.setName("UserName");
-
         Gson gson = new Gson();
         String jsonContent = gson.toJson(userDto);
 
@@ -61,7 +60,6 @@ public class UserControllerTestSuite {
                 .content(jsonContent))
                 .andExpect(status().isOk())
                 .andDo(print());
-
 
         verify(userService, times(1)).createUser(userMapper.mapToUser(any()));
     }
@@ -91,6 +89,7 @@ public class UserControllerTestSuite {
         Long userId = 1L;
         when(userService.getUserById(userId)).thenReturn(Optional.of(user));
         when(userMapper.mapToUserDto(userService.getUserById(userId).orElseThrow(UserNotFoundException::new))).thenReturn(userDto);
+
         // When & Then
         mockMvc.perform(put("/v1/user/key/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -142,5 +141,3 @@ public class UserControllerTestSuite {
                 .andExpect(status().isOk());
     }
 }
-
-

@@ -36,7 +36,6 @@ public class UserMapper {
         );
     }
 
-
     public List<UserDto> mapToUserDtoList(final List<User> users) {
         return users.stream()
                 .map(user -> new UserDto())

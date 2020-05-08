@@ -1,8 +1,5 @@
 package com.app.kantor.mapper;
 
-import com.app.kantor.domain.crypto.CryptoCurrency;
-import com.app.kantor.domain.crypto.CryptoCurrencyDto;
-import com.app.kantor.domain.crypto.RealtimeCurrencyExchangeRatedDto;
 import com.app.kantor.domain.stock.GlobalQuoteDto;
 import com.app.kantor.domain.stock.Stock;
 import com.app.kantor.domain.stock.StockDto;
@@ -30,8 +27,8 @@ public class StockMapper {
     }
 
     public StockDto mapToStockDto(final Stock stock) {
-        StockDto stockDto =new StockDto();
-        GlobalQuoteDto globalQuoteDto= new GlobalQuoteDto();
+        StockDto stockDto = new StockDto();
+        GlobalQuoteDto globalQuoteDto = new GlobalQuoteDto();
         globalQuoteDto.set_id(stock.get_id());
         globalQuoteDto.setSymbol(stock.getSymbol());
         globalQuoteDto.setOpen(stock.getOpen());
@@ -42,7 +39,7 @@ public class StockMapper {
         globalQuoteDto.setLatestTradingDay(stock.getLatestTradingDay());
         globalQuoteDto.setPreviousClose(stock.getPreviousClose());
         globalQuoteDto.setChange(stock.getChange());
-       stockDto.setGlobalQuoteDto( globalQuoteDto);
+        stockDto.setGlobalQuoteDto(globalQuoteDto);
         return stockDto;
     }
 
@@ -60,8 +57,9 @@ public class StockMapper {
         globalQuoteDto.setChange(stock.getChange());
         return globalQuoteDto;
     }
+
     public List<StockDto> mapToStockDtoList(List<Stock> stockList) {
-        List<StockDto> stockDtos= stockList.stream()
+        List<StockDto> stockDtos = stockList.stream()
                 .map(i -> new StockDto(
                         mapToGlobalQuoteDto(i))).collect(Collectors.toList());
         return stockDtos;

@@ -13,8 +13,8 @@ import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "NYSE_STOCK")
 public class Stock {
@@ -26,7 +26,7 @@ public class Stock {
     private String stock;
     @Column(name = "code")
     private String code;
-    @Column(name = "date")
+    @Column(name = "STOCK_DATE")
     private String date;
     @Column(name = "mid")
     private BigDecimal mid;
@@ -46,7 +46,7 @@ public class Stock {
     private String latestTradingDay;
     @Column(name = "previousClose")
     private BigDecimal previousClose;
-    @Column(name = "change")
+    @Column(name = "_CHANGE")
     private BigDecimal change;
 
     public Stock(String stock, String symbol, String date, BigDecimal mid) {

@@ -1,6 +1,5 @@
 package com.app.kantor.repository;
 
-import com.app.kantor.domain.cart.CartCrypto;
 import com.app.kantor.domain.crypto.CryptoCurrency;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,11 +26,14 @@ public class CryptoCurrencyRepositoryTestSuite {
     public void findAll() {
         //Given
         CryptoCurrency cryptoCurrency = new CryptoCurrency();
+
         //When
         cryptoCurrencyRepository.save(cryptoCurrency);
         List<CryptoCurrency> cryptoCurrencyList = cryptoCurrencyRepository.findAll();
+
         //Then
         Assert.assertEquals(1, cryptoCurrencyList.size());
+
         //CleanUp
         cryptoCurrencyRepository.deleteById(cryptoCurrency.get_id());
         Assert.assertFalse(cryptoCurrencyRepository.findById(cryptoCurrency.get_id()).isPresent());
@@ -41,11 +43,14 @@ public class CryptoCurrencyRepositoryTestSuite {
     public void findById() {
         //Given
         CryptoCurrency cryptoCurrency = new CryptoCurrency();
+
         //When
         cryptoCurrencyRepository.save(cryptoCurrency);
         Optional<CryptoCurrency> cartProductById = cryptoCurrencyRepository.findById(cryptoCurrency.get_id());
+
         //Then
         Assert.assertTrue(cartProductById.isPresent());
+
         //CleanUp
         cryptoCurrencyRepository.deleteById(cryptoCurrency.get_id());
         Assert.assertFalse(cryptoCurrencyRepository.findById(cryptoCurrency.get_id()).isPresent());

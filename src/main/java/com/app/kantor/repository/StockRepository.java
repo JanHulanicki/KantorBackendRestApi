@@ -1,6 +1,5 @@
 package com.app.kantor.repository;
 
-import com.app.kantor.domain.nbp.NbpCurrency;
 import com.app.kantor.domain.stock.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -3,7 +3,7 @@ package com.app.kantor.client.alphaVantage.crypto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

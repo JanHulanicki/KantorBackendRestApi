@@ -1,15 +1,10 @@
 package com.app.kantor.controller;
 
 import com.app.kantor.domain.cart.CartCryptoDto;
-import com.app.kantor.domain.cart.CartNbpDto;
 import com.app.kantor.domain.crypto.CryptoCurrencyDto;
 import com.app.kantor.domain.crypto.RealtimeCurrencyExchangeRatedDto;
-import com.app.kantor.domain.nbp.NbpCurrencyDto;
-import com.app.kantor.domain.nbp.NbpCurrencyRatesDto;
 import com.app.kantor.mapper.CartCryptoMapper;
-import com.app.kantor.mapper.CartNbpMapper;
 import com.app.kantor.service.CartCryptoService;
-import com.app.kantor.service.CartNbpService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.Test;
@@ -74,15 +69,13 @@ public class CartCryptoControllerTestSuite {
     public void testGetCurrencyList() throws Exception {
         //Given
         List<CryptoCurrencyDto> currencyDtoList = new ArrayList<>();
-
-        RealtimeCurrencyExchangeRatedDto realtimeCurrencyExchangeRatedDto= new RealtimeCurrencyExchangeRatedDto();
+        RealtimeCurrencyExchangeRatedDto realtimeCurrencyExchangeRatedDto = new RealtimeCurrencyExchangeRatedDto();
         realtimeCurrencyExchangeRatedDto.set_id(1L);
         realtimeCurrencyExchangeRatedDto.setCode("BTC");
         realtimeCurrencyExchangeRatedDto.setCurrency("BITCOIN");
         realtimeCurrencyExchangeRatedDto.setMid(new BigDecimal(10000));
         realtimeCurrencyExchangeRatedDto.setDate("2020-01-02");
         CryptoCurrencyDto cryptoCurrencyDto = new CryptoCurrencyDto(realtimeCurrencyExchangeRatedDto);
-
         currencyDtoList.add(cryptoCurrencyDto);
         when(cartCryptoService.getCryptoCurrencyFromCartCrypto(1l)).thenReturn(currencyDtoList);
 

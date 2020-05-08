@@ -2,7 +2,6 @@ package com.app.kantor.domain.cart;
 
 import com.app.kantor.domain.cartproduct.CartCryptoProduct;
 import com.app.kantor.domain.user.User;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +11,6 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -26,23 +24,21 @@ public class CartCrypto {
     private Long cartId;
     @Column(name = "CREATED")
     private String created;
+    @JoinColumn(name = "USER_ID", unique = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
+    @OneToMany(
+            targetEntity = CartCryptoProduct.class,
+            mappedBy = "cartCrypto",
+            orphanRemoval = true,
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY//EAGER
+    )
+    private List<CartCryptoProduct> cartCryptoProducts = new ArrayList<>();
 
     public CartCrypto(String created) {
         this.created = created;
     }
-
-    @JoinColumn(name = "USER_ID", unique = true)
-    @OneToOne(cascade = CascadeType.ALL)
-    private User user;
-
-   @OneToMany(
-           targetEntity = CartCryptoProduct.class,
-           mappedBy = "cartCrypto",
-           orphanRemoval = true,
-           cascade = CascadeType.PERSIST,
-           fetch = FetchType.LAZY//EAGER
-   )
-    private List<CartCryptoProduct> cartCryptoProducts = new ArrayList<>();
 
     @Override
     public String toString() {

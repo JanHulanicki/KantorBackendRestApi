@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,11 +41,14 @@ public class CartCryptoProductRepositoryTestSuite {
     public void findById() {
         //Given
         CartCryptoProduct cartProduct1 = new CartCryptoProduct();
+
         //When
         cartProductRepository.save(cartProduct1);
         Optional<CartCryptoProduct> cartProductById = cartProductRepository.findById(cartProduct1.getId());
+
         //Then
         Assert.assertTrue(cartProductById.isPresent());
+
         //CleanUp
         cartProductRepository.deleteById(cartProduct1.getId());
         Assert.assertFalse(cartProductRepository.findById(cartProduct1.getId()).isPresent());
