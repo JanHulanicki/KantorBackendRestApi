@@ -14,6 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CryptoCurrencyDto {
+
     @SerializedName("Realtime Currency Exchange Rate")
     @Expose
     public RealtimeCurrencyExchangeRatedDto realtimeCurrencyExchangeRatedDto;

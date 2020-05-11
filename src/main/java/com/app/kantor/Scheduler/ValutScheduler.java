@@ -21,7 +21,7 @@ public class ValutScheduler {
     @Autowired
     NbpCurrencyService nbpCurrencyService;
 
-    @Scheduled(cron = "0 0 12 * * *", zone = "Europe/Warsaw")
+    @Scheduled(fixedDelay = 120000, initialDelay = 1000)//(cron = "0 0 12 * * *", zone = "Europe/Warsaw")
     public void saveValut() throws IOException {
         String actualDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         NbpCurrency nbpCurrencyEUR = nbpCurrencyService.getActualNdpCurrency(NbpCurrencyCode.EUR.toString());
@@ -40,6 +40,7 @@ public class ValutScheduler {
         cryptoService.saveCrypto(cryptoCurrencyETH);
         cryptoService.saveCrypto(cryptoCurrencyLTC);
         cryptoService.saveCrypto(cryptoCurrencyXRP);
+        System.out.println("scheduler valut");
 
     }
 }

@@ -12,7 +12,10 @@ import java.util.stream.Collectors;
 public class StockMapper {
     public Stock mapToStock(final StockDto stockDto) {
         Stock stock = new Stock();
-        stock.set_id(stockDto.getGlobalQuoteDto().get_id());
+        // stock.set_id(stockDto.getGlobalQuoteDto().get_id());
+        stock.setCode(stockDto.getGlobalQuoteDto().getSymbol());//dod
+        stock.setDate(stockDto.getGlobalQuoteDto().getLatestTradingDay());//dod
+        stock.setMid(stockDto.getGlobalQuoteDto().getPrice());//dod
         stock.setStock(stockDto.getGlobalQuoteDto().getSymbol());
         stock.setSymbol(stockDto.getGlobalQuoteDto().getSymbol());
         stock.setOpen(stockDto.getGlobalQuoteDto().getOpen());
