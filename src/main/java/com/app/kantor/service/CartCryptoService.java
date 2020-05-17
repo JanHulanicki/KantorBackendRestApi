@@ -4,7 +4,10 @@ import com.app.kantor.domain.cart.CartCrypto;
 import com.app.kantor.domain.cartproduct.CartCryptoProduct;
 import com.app.kantor.domain.crypto.CryptoCurrency;
 import com.app.kantor.domain.crypto.CryptoCurrencyDto;
-import com.app.kantor.exception.*;
+import com.app.kantor.exception.CartCryptoNotFoundException;
+import com.app.kantor.exception.CartCryptoProductNotFoundException;
+import com.app.kantor.exception.CartNbpNotFoundException;
+import com.app.kantor.exception.CryptoCurrencyNotFoundException;
 import com.app.kantor.mapper.CryptoCurrencyMapper;
 import com.app.kantor.repository.CartCryptoProductRepository;
 import com.app.kantor.repository.CartCryptoRepository;
@@ -25,8 +28,7 @@ public class CartCryptoService {
     CryptoCurrencyRepository cryptoCurrencyRepository;
     @Autowired
     CryptoCurrencyMapper cryptoCurrencyMapper;
-   // @Autowired
-   // CartCryptoRepository cartCryptoRepository;
+
     public CartCrypto createCartCrypto(final CartCrypto cartCrypto) {
         return cartCryptoRepository.save(cartCrypto);
     }
@@ -36,7 +38,7 @@ public class CartCryptoService {
     }
 
 
-    public List<CryptoCurrencyDto> getCryptoCurrencyFromCartCrypto(final Long cartId) throws  CartNbpNotFoundException, CartCryptoNotFoundException {
+    public List<CryptoCurrencyDto> getCryptoCurrencyFromCartCrypto(final Long cartId) throws CartNbpNotFoundException, CartCryptoNotFoundException {
         if (cartCryptoRepository.findById(cartId).isPresent()) {
             CartCrypto cartCrypto = cartCryptoRepository.findById(cartId).orElseThrow(CartCryptoNotFoundException::new);
             List<CryptoCurrency> cryptoCurrencyList = cartCrypto.getCartCryptoProducts().stream()
@@ -48,14 +50,14 @@ public class CartCryptoService {
         }
     }
 
-    public void addCryptoCurrencyToCartCryptoProduct(final Long cartCryptoProductsId,final Long cartCryptoId, final Long cryptoCurrencytId, Double amount) throws  CartCryptoProductNotFoundException, CryptoCurrencyNotFoundException {
+    public void addCryptoCurrencyToCartCryptoProduct(final Long cartCryptoProductsId, final Long cartCryptoId, final Long cryptoCurrencytId, Double amount) throws CartCryptoProductNotFoundException, CryptoCurrencyNotFoundException {
         if (cartCryptoProductRepository.findById(cartCryptoProductsId).isPresent()) {
             if (cryptoCurrencyRepository.findById(cryptoCurrencytId).isPresent()) {
-              //  CryptoCurrency cryptoCurrency = new CryptoCurrency(cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getCurrency(),
-              //          cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getCode(),
-              //          cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getDate(),
+                //  CryptoCurrency cryptoCurrency = new CryptoCurrency(cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getCurrency(),
+                //          cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getCode(),
+                //          cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getDate(),
                 //        cryptoCurrencyRepository.findById(cryptoCurrencytId).get().getMid());
-                CartCryptoProduct cartCryptoProduct= new CartCryptoProduct(cartCryptoProductsId,cartCryptoRepository.findById(cartCryptoId).get(),cryptoCurrencyRepository.findById(cryptoCurrencytId).get(),amount);
+                CartCryptoProduct cartCryptoProduct = new CartCryptoProduct(cartCryptoProductsId, cartCryptoRepository.findById(cartCryptoId).get(), cryptoCurrencyRepository.findById(cryptoCurrencytId).get(), amount);
                 cartCryptoProductRepository.save(cartCryptoProduct);
             } else {
                 throw new CryptoCurrencyNotFoundException();

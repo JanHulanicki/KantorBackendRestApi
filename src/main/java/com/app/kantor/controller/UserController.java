@@ -2,7 +2,14 @@ package com.app.kantor.controller;
 
 import com.app.kantor.domain.user.UserDto;
 import com.app.kantor.exception.UserNotFoundException;
+import com.app.kantor.mapper.CartCryptoMapper;
+import com.app.kantor.mapper.CartNbpMapper;
+import com.app.kantor.mapper.CartStockMapper;
 import com.app.kantor.mapper.UserMapper;
+import com.app.kantor.repository.UserRepository;
+import com.app.kantor.service.CartCryptoService;
+import com.app.kantor.service.CartNbpService;
+import com.app.kantor.service.CartStockService;
 import com.app.kantor.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +29,22 @@ public class UserController {
 
     @Autowired
     UserMapper userMapper;
-
+    @Autowired
+    UserRepository userRepository;
     @Autowired
     UserService userService;
+    @Autowired
+    CartCryptoService cartCryptoService;
+    @Autowired
+    CartCryptoMapper cartCryptoMapper;
+    @Autowired
+    CartStockService cartStockService;
+    @Autowired
+    CartStockMapper cartStockMapper;
+    @Autowired
+    CartNbpService cartNbpService;
+    @Autowired
+    CartNbpMapper cartNbpMapper;
 
     @GetMapping(value = "/user")
     public List<UserDto> getUsers() {
@@ -37,7 +57,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/user")
-    public void createUser(@RequestBody UserDto userDto) {
+    public void createUser(@RequestBody UserDto userDto) throws UserNotFoundException {
         userService.createUser(userMapper.mapToUser(userDto));
         LOGGER.info("User has been created");
     }
@@ -54,11 +74,11 @@ public class UserController {
         LocalDateTime expiredDate = LocalDateTime.now().plusHours(1);
         DateTimeFormatter formattedLoginTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String key = UUID.randomUUID().toString();
-        UserDto user = userMapper.mapToUserDto(userService.getUserById(userId).orElseThrow(UserNotFoundException::new));
-        LOGGER.info("User " + user.getNick() + " has just logged in. " + loginTimeStart.format(formattedLoginTime));
+        UserDto userDto = userMapper.mapToUserDto(userService.getUserById(userId).orElseThrow(UserNotFoundException::new));
+        LOGGER.info("User " + userDto.getNick() + " has just logged in. " + loginTimeStart.format(formattedLoginTime));
         LOGGER.info("User's key: " + key);
-        user.setExpiredDate(expiredDate);
-        user.setUuidKey(key);
-        userService.saveUser(userMapper.mapToUser(user));
+        userDto.setExpiredDate(expiredDate);
+        userDto.setUuidKey(key);
+        userService.saveUser(userMapper.mapToUser(userDto));
     }
 }

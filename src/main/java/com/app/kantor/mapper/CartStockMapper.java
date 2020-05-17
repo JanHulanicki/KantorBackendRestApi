@@ -1,7 +1,6 @@
 package com.app.kantor.mapper;
 
 import com.app.kantor.domain.cart.CartStock;
-import com.app.kantor.domain.cart.CartStock;
 import com.app.kantor.domain.cart.CartStockDto;
 import com.app.kantor.exception.UserNotFoundException;
 import com.app.kantor.repository.UserRepository;

@@ -1,11 +1,13 @@
 package com.app.kantor.service;
 
 import com.app.kantor.domain.user.User;
+import com.app.kantor.exception.UserNotFoundException;
 import com.app.kantor.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
+@AutoConfigureTestDatabase
 public class UserServiceTestSuite {
     @Autowired
     private UserRepository userRepository;
@@ -57,7 +60,7 @@ public class UserServiceTestSuite {
     }
 
     @Test
-    public void createUserTest() {
+    public void createUserTest() throws UserNotFoundException {
         //Given
         User user = new User("nick", "password", "sample@mail.com",
                 "Name", "Surname", false, null, null);

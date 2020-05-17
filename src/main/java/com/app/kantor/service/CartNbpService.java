@@ -48,14 +48,14 @@ public class CartNbpService {
         }
     }
 
-    public void addNbpCurrencyToCartNbpProduct(final Long cartNbpProductsId,final Long cartNbpId, final Long nbpCurrencytId, Double amount) throws CartNbpProductNotFoundException, NbpCurrencyNotFoundException {
+    public void addNbpCurrencyToCartNbpProduct(final Long cartNbpProductsId, final Long cartNbpId, final Long nbpCurrencytId, Double amount) throws CartNbpProductNotFoundException, NbpCurrencyNotFoundException {
         if (cartNbpProductRepository.findById(cartNbpProductsId).isPresent()) {
             if (nbpCurrencyRepository.findById(nbpCurrencytId).isPresent()) {
                 NbpCurrency nbpCurrency = new NbpCurrency(nbpCurrencyRepository.findById(nbpCurrencytId).get().getCurrency(),
                         nbpCurrencyRepository.findById(nbpCurrencytId).get().getCode(),
                         nbpCurrencyRepository.findById(nbpCurrencytId).get().getDate(),
                         nbpCurrencyRepository.findById(nbpCurrencytId).get().getMid());
-                CartNbpProduct cartNbpProduct= new CartNbpProduct(cartNbpProductsId,cartNbpRepository.findById(cartNbpId).get(),nbpCurrencyRepository.findById(nbpCurrencytId).get(),amount);
+                CartNbpProduct cartNbpProduct = new CartNbpProduct(cartNbpProductsId, cartNbpRepository.findById(cartNbpId).get(), nbpCurrencyRepository.findById(nbpCurrencytId).get(), amount);
                 cartNbpProductRepository.save(cartNbpProduct);
             } else {
                 throw new NbpCurrencyNotFoundException();

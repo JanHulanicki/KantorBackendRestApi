@@ -1,4 +1,4 @@
 package com.app.kantor.exception;
 
-public class NbpCurrencyNotFoundException extends Exception{
+public class NbpCurrencyNotFoundException extends Exception {
 }

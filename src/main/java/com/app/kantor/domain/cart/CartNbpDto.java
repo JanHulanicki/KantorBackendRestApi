@@ -13,8 +13,4 @@ public class CartNbpDto {
     private Long cartId;
     private String created;
     private Long userId;
-
-    public CartNbpDto(String created) {
-        this.created = created;
-    }
 }

@@ -6,6 +6,7 @@ import com.app.kantor.repository.NbpCurrencyRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -24,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 @Transactional
 @EnableTransactionManagement
 @PersistenceContext
+@AutoConfigureTestDatabase
 public class NbpServiceTestSuite {
     @Autowired
     NbpCurrencyService nbpCurrencyService;
@@ -44,30 +46,5 @@ public class NbpServiceTestSuite {
         assertEquals("USD", nbpCurrencyRepository.getOne(nbpCurrency.get_id()).getCode());
     }
 
-    @Test
-    public void getActualNdpCurrencyTest() throws IOException {
-        //Given
-        nbpCurrency = new NbpCurrency();
 
-        //When
-        nbpCurrency = nbpCurrencyService.getActualNdpCurrency(NbpCurrencyCode.CHF.toString());
-
-        //Then
-        assertEquals("CHF", nbpCurrency.getCode());
-    }
-
-    @Test
-    public void getNbpCurrenciesTest() throws IOException {
-        //Given
-        nbpCurrency = new NbpCurrency();
-        nbpCurrency = nbpCurrency = nbpCurrencyService.getActualNdpCurrency(NbpCurrencyCode.CHF.toString());
-        nbpCurrencyService.saveNbpCurrency(nbpCurrency);
-        List<NbpCurrency> nbpCurrencies = new ArrayList<>();
-
-        //When
-        nbpCurrencies = nbpCurrencyService.getNbpCurrencies();
-
-        //Then
-        assertEquals(1, nbpCurrencies.size());
-    }
 }

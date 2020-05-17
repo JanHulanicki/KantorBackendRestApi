@@ -17,14 +17,14 @@ public class StockScheduler3 {
 
     @Scheduled(fixedDelay = 60000, initialDelay = 40000)//(cron = "0 0 13 * * *", zone = "Europe/Warsaw")
     public void saveStock() throws IOException {
-    //    Stock stockABC = stockService.getActualStock(StockCode.AlPHABET.getStockEndpoint());
-       Stock stockNestle = stockService.getActualStock(StockCode.NESTLEADR.getStockEndpoint());
+        //    Stock stockABC = stockService.getActualStock(StockCode.AlPHABET.getStockEndpoint());
+        Stock stockNestle = stockService.getActualStock(StockCode.NESTLEADR.getStockEndpoint());
         Stock stockLHM = stockService.getActualStock(StockCode.LOCKHEED.getStockEndpoint());
-      // Stock stockIBM = stockService.getActualStock(StockCode.IBM.getStockEndpoint());
- //       stockService.saveStock(stockABC);
-       // stockService.saveStock(stockNestle);
+        // Stock stockIBM = stockService.getActualStock(StockCode.IBM.getStockEndpoint());
+        //       stockService.saveStock(stockABC);
+        // stockService.saveStock(stockNestle);
         stockService.saveStock(stockLHM);
-       // stockService.saveStock(stockIBM);
+        // stockService.saveStock(stockIBM);
         System.out.println("scheduler3 stock");
     }
 }

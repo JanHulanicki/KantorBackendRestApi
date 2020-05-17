@@ -13,8 +13,4 @@ public class CartCryptoDto {
     private Long cartId;
     private String created;
     private Long userId;
-
-    public CartCryptoDto(String created) {
-        this.created = created;
-    }
 }

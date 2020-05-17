@@ -4,7 +4,6 @@ import com.app.kantor.client.nbp.NbpCurrenciesClient;
 import com.app.kantor.domain.nbp.NbpCurrency;
 import com.app.kantor.mapper.NbpCurrencyMapper;
 import com.app.kantor.repository.NbpCurrencyRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

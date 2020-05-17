@@ -1,4 +1,4 @@
 package com.app.kantor.exception;
 
-public class CartStockNotFoundException extends Exception{
+public class CartStockNotFoundException extends Exception {
 }

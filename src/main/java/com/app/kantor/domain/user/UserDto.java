@@ -1,4 +1,5 @@
 package com.app.kantor.domain.user;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,21 @@ public class UserDto {
     private Boolean isBlocked;
     private String uuidKey;
     private LocalDateTime expiredDate;
+    private Long cartCryptoId;
+    private Long cartNbpId;
+    private Long cartStockId;
+
+    public UserDto(Long id, String nick, String password, String emailAddress, String name, String surname, Boolean isBlocked, String uuidKey, LocalDateTime expiredDate) {
+        this.id = id;
+        this.nick = nick;
+        this.password = password;
+        this.emailAddress = emailAddress;
+        this.name = name;
+        this.surname = surname;
+        this.isBlocked = isBlocked;
+        this.uuidKey = uuidKey;
+        this.expiredDate = expiredDate;
+    }
 
     @Override
     public String toString() {

@@ -34,10 +34,5 @@ public class CartStock {
             fetch = FetchType.LAZY//EAGER
     )
     private List<CartStockProduct> cartStockProducts = new ArrayList<>();
-
-    public CartStock(String created) {
-        this.created = created;
-    }
-
 }
 

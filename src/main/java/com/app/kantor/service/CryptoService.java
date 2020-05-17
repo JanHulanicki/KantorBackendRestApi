@@ -1,13 +1,9 @@
 package com.app.kantor.service;
 
 import com.app.kantor.client.alphaVantage.crypto.CryptoClient;
-import com.app.kantor.client.alphaVantage.stock.StockClient;
 import com.app.kantor.domain.crypto.CryptoCurrency;
-import com.app.kantor.domain.stock.Stock;
 import com.app.kantor.mapper.CryptoCurrencyMapper;
-import com.app.kantor.mapper.StockMapper;
 import com.app.kantor.repository.CryptoCurrencyRepository;
-import com.app.kantor.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

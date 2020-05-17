@@ -1,7 +1,7 @@
-package com.app.kantor.service;
+package com.app.kantor.mapper;
 
-import com.app.kantor.domain.crypto.CryptoCurrency;
-import com.app.kantor.repository.CryptoCurrencyRepository;
+import com.app.kantor.domain.user.User;
+import com.app.kantor.domain.user.UserDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.PersistenceContext;
-import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,23 +21,34 @@ import static org.junit.Assert.assertEquals;
 @EnableTransactionManagement
 @PersistenceContext
 @AutoConfigureTestDatabase
-public class CryptoServiceTestSuite {
-    @Autowired
-    CryptoService cryptoService;
-    @Autowired
-    CryptoCurrencyRepository cryptoCurrencyRepository;
-    CryptoCurrency cryptoCurrency;
-
+public class UserMapperTestSuite {
+   @Autowired
+   UserMapper userMapper;
     @Test
-    public void saveCryptoTest() {
-        //Given
-        cryptoCurrency = new CryptoCurrency("BITCOIN", "BTC", "2020-05-05", new BigDecimal(1111));
+    public void mapToUserTest(){
+       //Given
+        UserDto userDto = new UserDto();
+        User user = new User();
+        userDto.setName("Username");
 
         //When
-        cryptoService.saveCrypto(cryptoCurrency);
+        user = userMapper.mapToUser(userDto);
 
         //Then
-        assertEquals("BITCOIN", cryptoCurrencyRepository.getOne(cryptoCurrency.get_id()).getCurrency());
-        assertEquals("BTC", cryptoCurrencyRepository.getOne(cryptoCurrency.get_id()).getCode());
+        assertEquals("Username", user.getName());
+    }
+
+    @Test
+    public void mapToUserDtoTest(){
+        //Given
+        UserDto userDto = new UserDto();
+        User user = new User();
+        user.setName("Username");
+
+        //When
+        userDto = userMapper.mapToUserDto(user);
+
+        //Then
+        assertEquals("Username", userDto.getName());
     }
 }
